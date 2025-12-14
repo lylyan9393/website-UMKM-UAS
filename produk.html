@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Produk - UMKM Sarapan Bu Har</title>
+    <link rel="stylesheet"  href="style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-brown bg-brown sticky-top">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img src="images/Logo.png" alt="Logo Sarapan Bu Har" width="40" height="40"/>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li>
+                        <li class="nav-item"><a class="nav-link" href="tentang.html">Tentang</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="produk.html">Produk</a></li>
+                        <li class="nav-item"><a class="nav-link" href="galeri.html">Galeri</a></li>
+                        <li class="nav-item"><a class="nav-link" href="kontak.html">Kontak</a></li>
+                        <li class="nav-item"><a class="nav-link" href="webinar.html">Webinar</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Produk Unggulan Kami</h2>
+        <p>Berikut daftar produk Sarapan Bu Har yang kami sediakan</p>
+
+        <table border="1" cellspacing="0" cellpadding="8">
+            <thead>
+                <tr>
+                    <th>Produk</th>
+                    <th>Harga</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Nasi Rendang</td><td id="hargaRendang" data-harga="12000">Rp 12.000</td></tr>
+                <tr><td>Nasi Ayam</td><td id="hargaAyam" data-harga="10000">Rp 10.000</td></tr>
+                <tr><td>Nasi Megono</td><td id="hargaMegono" data-harga="5000">Rp 5.000</td></tr>
+                <tr><td>Ayam Opor</td><td id="hargaOpor" data-harga="8000">Rp 8.000</td></tr>
+                <tr><td>Ayam Kecap</td><td id="hargaKecap" data-harga="7000">Rp 7.000</td></tr>
+                <tr><td>Telor Balado</td><td id="hargaBalado" data-harga="6000">Rp 6.000</td></tr>
+                <tr><td colspan="2" style="text-align: center; background-color: blanchedalmond;">Semua harga sudah termasuk PPN</td></tr>
+            </tbody>
+        </table>
+
+        <hr>
+        <section class="function-task">
+            <h3>Hitung Total Belanja</h3>
+            <form id="formBelanja">
+                <label for="produkPilih">Pilih Produk:</label>
+                <select id="produkPilih" name="produkPilih">
+                    <option value="12000|Nasi Rendang">Nasi Rendang (Rp 12.000)</option>
+                    <option value="10000|Nasi Ayam">Nasi Ayam (Rp 10.000)</option>
+                    <option value="5000|Nasi Megono">Nasi Megono (Rp 5.000)</option>
+                    <option value="8000|Ayam Opor">Ayam Opor (Rp 8.000)</option>
+                    <option value="7000|Ayam Kecap">Ayam Kecap (Rp 7.000)</option>
+                    <option value="6000|Telor Balado">Telor Balado (Rp 6.000)</option>
+                </select>
+                <br><br>
+                <label for="jumlahBeli">Jumlah:</label>
+                <input type="number" id="jumlahBeli" name="jumlahBeli" value="1" min="1" required>
+                <br><br>
+                <button type="button" id="btnTambah">Tambah ke Keranjang</button>
+                <br><br>
+                <button type="button" id="hapusItem">Hapus Item dari Keranjang</button>
+                <button type="button" id="resetTotal">Reset Total</button>
+            </form>
+            <br>
+            <h4>Keranjang Belanja:</h4>
+            <ul id="keranjangList"></ul>
+            <p><strong>Total Belanja Anda:</strong> <span id="hasilTotal">RP 0</span></p>
+        </section>
+
+        <hr>
+        <section class="conditional-task">
+            <h3>Cek Kategori Usia Pelanggan</h3>
+            <label for="inputUsia">Masukkan Usia Anda:</label>
+            <input type="number" id="inputUsia" min="0" required>
+            <button type="button" onclick="cekKategoriUsia()">Cek Kategori</button>
+            <p>Status Kategori: <span id="statusUsia"></span></p>
+        </section>
+
+        <hr>
+        <section class="Loop-task">
+            <h3>Testimoni Pelanggan</h3>
+            <div id="testimoniContainer" class="testimoni-grid">
+            </div>
+        </section>
+
+        <hr>
+        <div class="container my-5">
+            <h1 class="text-center mb-4">Profil Produk</h1>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card shadow-lg">
+                        <img src="images/Nasi.jpeg" class="card-img-top">
+                        <div class="card-body">
+                            <h5>Nasi Rendang</h5>
+                            <p>IDR 12.000</p>
+                            <button class="btn btn-primary beli">Beli Sekarang</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card shadow-lg">
+                        <img src="images/ayam.jpeg" class="card-img-top">
+                        <div class="card-body">
+                            <h5>Ayam Kecap</h5>
+                            <p>IDR 7.000</p>
+                            <button class="btn btn-primary beli">Beli Sekarang</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h3>Dengarkan Cerita Kami</h3>
+        <audio controls>
+            <source src="audio/cerita-umkm.mp3" type="audio/mpeg">
+            Audio tidak tersedia di browser anda.
+        </audio>
+    </main>
+
+    <h3>Daftar Wishlist Produk</h3>
+
+    <form>
+        <input type="text" id="produkInput" placeholder="Nama produk..." />
+        <p>Preview: <span id="previewProduk"></span></p>
+        <button id="tambahBtn">Tambah Produk</button>
+    </form>
+
+    <ul id="daftarProduk"></ul>
+
+    <hr />
+
+    <label for="temaSelect">pilih Tema Warna: </label>
+    <select id="temaSelect">
+        <option value="white">Putih</option>
+        <option value="lightblue">Biru Muda</option>
+        <option value="lightyellow">Kuning Muda</option>
+    </select>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const produkInput = document.getElementById("produkInput");
+            const tambahBtn = document.getElementById("tambahBtn");
+            const daftarProduk = document.getElementById("daftarProduk");
+            const previewProduk = document.getElementById("previewProduk");
+            const temaSelect = document.getElementById("temaSelect");
+
+            tambahBtn.addEventListener("click", function (e) {
+                e.preventDefault();
+
+                const namaProduk = produkInput.value.trim();
+                if (namaProduk !== "") {
+                    const li = document.createElement("li");
+                    li.textContent = namaProduk;
+                    li.addEventListener("mouseover", () => li.style.backgroundColor = "#e0e0e0");
+                    li.addEventListener("mouseout", () => li.style.backgroundColor = "");
+
+                    li.addEventListener("dblclick", () => {
+                        if (confirm("Yakin ingin menghapus produk ini?")) {
+                            li.remove();
+                        }
+                    });
+
+                    daftarProduk.appendChild(li);
+                    produkInput.value = "";
+                    previewProduk.textContent = "";
+                }
+            });
+
+            produkInput.addEventListener("keyup", function () {
+                previewProduk.textContent = produkInput.value;
+            });
+
+            temaSelect.addEventListener("change", function() {
+                document.body.style.backgroundColor = temaSelect.value;
+            });
+        });
+    </script>
+
+    <footer>
+        <p>&copy; 2025 Sarapan Bu Har</p>
+    </footer>
+
+    <script>
+        let total = 0;
+        let keranjang = [];
+
+        document.getElementById('btnTambah').addEventListener('click', function() {
+            const dataProduk = document.getElementById('produkPilih').value.split('|');
+            const harga = parseInt(dataProduk[0]);
+            const nama = dataProduk[1];
+            const jumlah = parseInt(document.getElementById('jumlahBeli').value);
+
+            const subtotal = harga * jumlah;
+
+            keranjang.push({nama, jumlah, subtotal});
+            updateKeranjang();
+        });
+
+        document.getElementById('hapusItem').addEventListener('click', function() {
+            keranjang.pop();
+            updateKeranjang();
+        });
+
+        document.getElementById('resetTotal').addEventListener('click', function() {
+            keranjang = [];
+            updateKeranjang();
+        });
+
+        function updateKeranjang() {
+            const list = document.getElementById('keranjangList');
+            list.innerHTML = '';
+
+            total = 0;
+            keranjang.forEach(item => {
+                total += item.subtotal;
+                const li = document.createElement('li');
+                li.textContent = `${item.nama} x ${item.jumlah} = Rp ${item.subtotal.toLocaleString('id-ID')}`;
+                list.appendChild(li);
+            });
+
+            document.getElementById('hasilTotal').textContent = total.toLocaleString('id-ID', {
+                style: 'currency',
+                currency: 'IDR'
+            });
+        }
+
+        function cekKategoriUsia() {
+            const usia = parseInt(document.getElementById('inputUsia').value);
+            let kategori = "";
+
+            if (isNaN(usia) || usia < 0) {
+                kategori = "Usia tidak valid.";
+            } else if (usia < 13) {
+                kategori = "Anak-anak";
+            } else if (usia <= 17) {
+                kategori = "Remaja";
+            } else if (usia <= 60) {
+                kategori = "Dewasa";
+            } else {
+                kategori = "Lansia";
+            }
+            document.getElementById('statusUsia').textContent = kategori;
+        }
+
+        document.addEventListener('DOMContentLoaded', function(){
+            const testimoni = [
+                { nama: "Agil", produk: "Nasi Rendang", teks: "Rendangnya mantap! pedasnya pas, auto langganan!"},
+                { nama: "Hidayah", produk: "Nasi Kecap", teks: "Ayam kecapnya manis gurih, anak saya suka sekali."},
+                { nama: "Lintang", produk: "Nasi Megono", teks: "Megononya autentik, harga murah rasa mewah."},
+                { nama: "Diah", produk: "Ayam Opor", teks: "Kuah opornya kental dan bumbunya meresap."},
+                { nama: "Ara", produk: "Telor Balado", teks: "Porsi telornya besar, baladonya juga nendang!"}
+            ];
+
+            const container = document.getElementById('testimoniContainer');
+
+            testimoni.forEach(function(item) {
+                const testiCard = document.createElement('div');
+                testiCard.className = 'testimoni-card';
+                testiCard.innerHTML = `
+                    <h4>"${item.produk}"</h4>
+                    <p class="testimoni-teks">"${item.teks}"</p>
+                    <p class="testimoni-nama">**-${item.nama}**</p>
+                `;
+                container.appendChild(testiCard);
+            })
+        })
+    </script>
+    <script>
+        $(".beli").click(function(){
+            alert("Produk berhasil ditambahkan ke keranjang!");
+        });
+    </script>
+</body>
+</html>
