@@ -34,21 +34,36 @@
     </header>
 
     <div class="container my-5">
-        <h1>Daftar Webinar Sarapan Bu Har</h1>
-        <form class="mt-4">
-            <input type="text" class="form-control mb-3"  placeholder="Nama Lengkap">
-            <input type="email" class="form-control mb-3" placeholder="Email">
-            <button id="daftarWebinar" class="btn btn-primary">Daftar</button>
+        <h1>Daftar Webinar</h1>
+        <form id="formWebinar" class="mt-4">
+            <input type="text" id="nama" class="form-control mb-3" placeholder="Nama" required>
+            <input type="email" id="email" class="form-control mb-3" placeholder="Email" required>
+            <button class="btn btn-success" id="Daftar">Daftar</button>
         </form>
-    </div>
-    <div id="alertSukses" class="alert alert-succes mt-3" style="display: none;">
-            Anda sudah terdaftar di Webinar!
-    </div>
+
+        <div id="alertSukses" class="alert alert-succes mt-3" style="display: none;">
+            Anda sudah terdaftar sebagai peserta webinar!
+        </div>
     </div>
     <script>
-        $("#daftarWebinar").click(function(e){
+        $("#Daftar").click(function(e){
             e.preventDefault();
+            
+            let nama = $("#nama").val().trim();
+            let email = $("#email").val().trim();
+
+            if (nama === "" || email === "") {
+                alert("Semua kolom wajib diisi!");
+                return;
+            }
+
+            if (!email.includes("@")) {
+                alert("Email tidak valid! harus mengandung @");
+                return;
+            }
+
             $("#alertSukses").slideDown();
+            $("#formWebinar")[0].reset();
         });
     </script>
 

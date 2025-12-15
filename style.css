@@ -292,16 +292,6 @@ nav ul li a {
     width: auto;
 }
 
-.nav-menu {
-    display: flex;
-    gap: 30px;
-    justify-content: center;
-    flex-grow: 0.75;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
 .nav-menu li {
     margin-right: 20px;
 }
@@ -332,11 +322,6 @@ nav ul li a {
 
 .keunggulan, .testimoni {
     padding: 40px 0;
-}
-
-.fitur-list {
-    list-style: none;
-    padding-left: 0;
 }
 
 .fitur-list li {
@@ -373,27 +358,6 @@ form input, form select, form textarea {
     border: 1px solid #ccc;
 }
 
-.btn-kirim, .btn-clear {
-    padding: 10px 15px;
-    border: none;
-    cursor: pointer;
-    border-radius: 6px;
-}
-
-.btn-kirim {
-    background: #0984e3;
-    color: white;
-}
-
-.btn-clear {
-    background: #d63031;
-    color: white;
-    margin-left: 8px;
-}
-
-.error {color: red; }
-.success {color: green; font-weight: bold; margin-top: 10px;}
-
 .gender-group {
     display: flex;
     gap: 30px;
@@ -422,11 +386,6 @@ form input, form select, form textarea {
     white-space: nowrap;
     cursor: pointer;
     color: #532a10;
-}
-
-.error {
-    color: red;
-    font-size: 0.8rem;
 }
 
 .nama-produk {

@@ -36,9 +36,9 @@
     <div class="container my-5">
         <h1>Hubungi Kami</h1>
         <form id="formKontak" class="mt-4">
-            <input type="text" class="form-control mb-3" placeholder="Nama">
-            <input type="email" class="form-control mb-3" placeholder="Email">
-            <textarea class="form-control mb-3" placeholder="Pesan"></textarea>
+            <input type="text" id="nama" class="form-control mb-3" placeholder="Nama" required>
+            <input type="email" id="email" class="form-control mb-3" placeholder="Email" required>
+            <textarea id="pesan" class="form-control mb-3" placeholder="Pesan"></textarea>
             <button class="btn btn-success" id="kirimPesan">Kirim Pesan</button>
         </form>
 
@@ -49,7 +49,23 @@
     <script>
         $("#kirimPesan").click(function(e){
             e.preventDefault();
+            
+            let nama = $("#nama").val().trim();
+            let email = $("#email").val().trim();
+            let pesan = $("#pesan").val().trim();
+
+            if (nama === "" || email === "" || pesan === "") {
+                alert("Semua kolom wajib diisi!");
+                return;
+            }
+
+            if (!email.includes("@")) {
+                alert("Email tidak valid! harus mengandung @");
+                return;
+            }
+
             $("#alertSukses").slideDown();
+            $("#formKontak")[0].reset();
         });
     </script>
 
